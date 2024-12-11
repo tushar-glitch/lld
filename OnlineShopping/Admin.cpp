@@ -1,28 +1,22 @@
-#include<iostream>
-#include<string>
-#include "Catalog.cpp"
+#include "Admin.h"
+#include <iostream>
 
 using namespace std;
-class Admin{
-    int id;
-    string name, email;
-    Catalog *catalog;
 
-    public:
-        Admin(int id, string name, string email, Catalog *catalog) : id(id), name(name), email(email), catalog(catalog)
-        {
-        cout << "Admin created" << endl;
-        }
+Admin::Admin(int id, string name, string email, Catalog *catalog)
+    : id(id), name(name), email(email), catalog(catalog) {
+    cout << "Admin created" << endl;
+}
 
-        void addProduct(int id, string name, string category, int price){
-            catalog->addProduct(id, name, category, price);
-        }
+void Admin::addProduct(int id, string name, string category, int price) {
+    cout << "!111111111111111111111111111111111111111111111111111111111";
+    // catalog->addProduct(id, name, category, price);
+}
 
-        // void updateProduct(int id, string name, string category, int price){
-        //     catalog->updateProduct(id, name, category, price);
-        // }
+// void Admin::updateProduct(int id, string name, string category, int price) {
+//     catalog->updateProduct(id, name, category, price);
+// }
 
-        // void deleteProduct(int id){
-        //     catalog->deleteProduct(id);
-        // }
-};
+// void Admin::deleteProduct(int id) {
+//     catalog->deleteProduct(id);
+// }
