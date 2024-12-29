@@ -6,10 +6,10 @@ class Point{
     public:
     Point() = default;
     Point(int xx, int yy, int zz) : x{xx}, y{yy}, z{zz}{};
-    friend ostream& operator<<(const Point&, const ostream&);
+    friend ostream& operator<<(ostream&, const Point&);
 };
 
-ostream& operator<<(Point &point, ostream &out){
+ostream& operator<<(ostream &out, const Point &point){
     out<<point.x<<" "<<point.y<<" "<<point.z<<endl;
     return out;
 }
