@@ -6,13 +6,16 @@ class IntArray{
   int sizeOfArray;
   public:
   IntArray(int size){
-      startingAddress = new int();
+      startingAddress = new int[size];
       int *ptr = startingAddress;
       sizeOfArray = size;
       for(int i=0;i<size;++i){
           *ptr = 1;
           ptr++;
       }
+  }
+  ~IntArray(){
+      delete startingAddress;
   }
   friend ostream& operator<<(ostream&, IntArray&);
   
@@ -22,6 +25,16 @@ class IntArray{
       return *ptr;
   }
   
+  void operator=(const IntArray& obj2){
+      int newSize = obj2.sizeOfArray;
+      this->sizeOfArray = newSize;
+      int *ptr1 = this->startingAddress,*ptr2 = obj2.startingAddress;
+      for(int i=0;i<newSize;++i){
+          *ptr1 = *ptr2;
+          ptr1++;
+          ptr2++;
+      }
+  }
 };
 
 ostream& operator<<(ostream& out, IntArray& obj){
@@ -33,7 +46,6 @@ ostream& operator<<(ostream& out, IntArray& obj){
     }
     return out;
 }
-
 
 IntArray fillArray()
 {
@@ -53,5 +65,18 @@ int main()
     IntArray a{ fillArray() };
 
 	std::cout << a << '\n';
+
+	auto& ref{ a };
+	a = ref;
+
+	IntArray b(1);
+	b = a;
+
+	a[4] = 7;
+
+	std::cout << b << '\n';
+    // IntArray arr(100);
+    // for(int i=0;i<1000;++i) arr[i] = i;
+    // cout<<arr<<endl;
     return 0;
 }
