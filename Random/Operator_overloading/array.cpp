@@ -15,7 +15,7 @@ class IntArray{
       }
   }
   ~IntArray(){
-      delete startingAddress;
+      delete[] startingAddress;
   }
   friend ostream& operator<<(ostream&, IntArray&);
   
