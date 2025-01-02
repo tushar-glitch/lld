@@ -5,7 +5,7 @@ template <typename T>
 class smartpointer{
   T* _ptr;
   public:
-  smartpointer(T* ptr): _ptr{ptr}{};
+  smartpointer(T* ptr = nullptr): _ptr{ptr}{};
   ~smartpointer(){
       delete _ptr;
   }
