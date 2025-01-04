@@ -40,7 +40,7 @@ int _global = 1;
 int main(){
     uniquePointer<int> obj (new int(2));
     std::cout<<*obj;
-    uniquePointer<int> obj2(obj2);
+    uniquePointer<int> obj2(obj);
     std::cout<<*obj2;
     uniquePointer<int> obj3 (new int(5));
     obj3 = obj2;
