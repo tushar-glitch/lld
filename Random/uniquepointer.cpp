@@ -35,8 +35,6 @@ class uniquePointer{
     T* m_ptr;
 };
 
-int _global = 1;
-
 int main(){
     uniquePointer<int> obj (new int(2));
     std::cout<<*obj;
