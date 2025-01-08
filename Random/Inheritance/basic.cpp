@@ -14,8 +14,8 @@ class Apple : public Fruit{
 };
 
 std::ostream& operator<<(std::ostream& out, const Apple& obj){
-    out<<"Apple("<<obj.m_name<<", "<<obj.m_color<<", "<<obj.m_fiber<<")";
-    return out;
+  out << "Apple(" << obj.m_name << ", " << obj.m_color << ", " << obj.m_fiber << ");";
+  return out;
 }
 
 class Banana : public Fruit{
@@ -25,8 +25,8 @@ class Banana : public Fruit{
 };
 
 std::ostream& operator<<(std::ostream& out, const Banana& obj){
-    out<<"Banana("<<obj.m_name<<", "<<obj.m_color<<")";
-    return out;
+  out << "Banana(" << obj.m_name << ", " << obj.m_color << ");";
+  return out;
 }
 
 int main()
