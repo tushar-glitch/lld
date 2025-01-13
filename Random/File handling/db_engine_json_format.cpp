@@ -72,6 +72,34 @@ void updateValue(unordered_map<string, string> &db){
     }
 }
 
+void deleteValue(unordered_map<string, string> &db){
+    cout<<"Enter key: ";
+    string key;
+    cin>>key;
+    if(keyNotPresentInDb(key, db)){
+        cout<<"Sorry, no key found!\n";
+    }
+    else{
+        cout<<"Do you really want to delete permanently?(Y/N): ";
+        char cmd;
+        cin>>cmd;
+        if(cmd == 'Y' || cmd == 'y'){
+            db.erase(key);
+            ofstream fout;
+            fout.open("db.txt", ios::trunc);
+            for(auto i:db){
+                fout<<i.first<<" : "<<i.second<<"\n";
+            }
+            cout<<"Value deleted!\n";
+            fout.flush();
+            fout.close();
+        }
+        else{
+            cout<<"Key deletion terminated.\n";
+        }
+    }
+}
+
 int main()
 {
    unordered_map<string, string> database_map;
@@ -100,6 +128,9 @@ int main()
             break;
            case 3:
             updateValue(database_map);
+            break;
+           case 4:
+            deleteValue(database_map);
             break;
            default:
             quit = true;
