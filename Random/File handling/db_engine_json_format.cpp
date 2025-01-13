@@ -1,42 +1,62 @@
 #include <iostream>
 #include <fstream>
+#include <unordered_map>
 using namespace std;
 
-bool checkDuplicate(string &key){
-   ifstream fin;
-   fin.open("db.txt");
-   string curr_line;
-   while(getline(fin, curr_line)){
-       int firstSpace = curr_line.find(' ');
-       string curr_key = curr_line.substr(0, firstSpace);
-       if(curr_key == key){
-           cout<<"Error: Duplicate key found!\n";
-           return 0;
-       }
-   }
-   fin.close();
-   return 1;
+void loadDB(unordered_map<string, string> &db){
+  ifstream fin;
+  fin.open("db.txt");
+  string curr_line;
+  while(getline(fin, curr_line)){
+      int firstSpace = curr_line.find(" : ");
+      string curr_key = curr_line.substr(0, firstSpace);
+      string curr_value = curr_line.substr(firstSpace+3, curr_line.length());
+      db[curr_key] = curr_value;
+  }
+  fin.close();
 }
 
-void addValue(ofstream &fout){
+bool keyNotPresentInDb(string &key, unordered_map<string, string> &db){
+    return (db.find(key) == db.end());
+}
+
+void addValue(ofstream &fout, unordered_map<string, string> &db){
     string key, value;
     cout<<"Enter key: \n";
     cin>>key;
     cout<<"\nEnter value: \n";
     cin>>value;
-    if(checkDuplicate(key)){
+    if(keyNotPresentInDb(key, db)){
         fout<<key<<" : "<<value<<"\n";
+        db[key] = value;
         cout<<"\nData inserted successfully!\n";
+    }
+    else{
+        cout<<"Error: Duplicate key found!\n";
     }
     fout.flush();
 }
 
+void getValue(unordered_map<string, string> &db){
+    cout<<"Enter key : ";
+    string key;
+    cin>>key;
+    if(keyNotPresentInDb(key, db)){
+        cout<<"Sorry, no key found!\n";
+    }
+    else{
+        cout<<db[key]<<endl;
+    }
+}
+
 int main()
 {
-   cout<<"Creating a new Database..."<<endl;
+   unordered_map<string, string> database_map;
+   cout<<"Loading the database..."<<endl;
    ofstream fout;
    fout.open("db.txt", ios::app);
-   cout<<"Database created successfully"<<endl;
+   loadDB(database_map);
+   cout<<"Database loaded successfully"<<endl;
    bool quit = false;
    while(!quit){
        cout<<"\n\n";
@@ -50,7 +70,10 @@ int main()
        cin>>op;
        switch(op){
            case 1:
-            addValue(fout);
+            addValue(fout, database_map);
+            break;
+           case 2:
+            getValue(database_map);
             break;
            default:
             quit = true;
