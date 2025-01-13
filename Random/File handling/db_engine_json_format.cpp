@@ -28,6 +28,7 @@ void addValue(ofstream &fout){
         fout<<key<<" : "<<value<<"\n";
         cout<<"\nData inserted successfully!\n";
     }
+    fout.flush();
 }
 
 int main()
