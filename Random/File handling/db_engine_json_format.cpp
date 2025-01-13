@@ -49,6 +49,29 @@ void getValue(unordered_map<string, string> &db){
     }
 }
 
+void updateValue(unordered_map<string, string> &db){
+    cout<<"Enter key: ";
+    string key;
+    cin>>key;
+    if(keyNotPresentInDb(key, db)){
+        cout<<"Sorry, no key found!\n";
+    }
+    else{
+        string value;
+        cout<<"Enter value: ";
+        cin>>value;
+        db[key] = value;
+        ofstream fout;
+        fout.open("db.txt", ios::trunc);
+        for(auto i:db){
+            fout<<i.first<<" : "<<i.second<<"\n";
+        }
+        cout<<"Value updated!\n";
+        fout.flush();
+        fout.close();
+    }
+}
+
 int main()
 {
    unordered_map<string, string> database_map;
@@ -74,6 +97,9 @@ int main()
             break;
            case 2:
             getValue(database_map);
+            break;
+           case 3:
+            updateValue(database_map);
             break;
            default:
             quit = true;
