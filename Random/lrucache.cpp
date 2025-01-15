@@ -1,3 +1,6 @@
+#include<iostream>
+#include<unordered_map>
+
 class LRUCache {
 private:
     int _cap;
@@ -12,7 +15,7 @@ private:
     };
     cache *_head = new cache(-1, -1);
     cache *_tail = new cache(-1, -1);
-    unordered_map<int, cache*> _m;
+    std::unordered_map<int, cache*> _m;
 public:
     LRUCache(int capacity){
         _cap = capacity;
