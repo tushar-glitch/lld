@@ -107,7 +107,7 @@ int main()
    ofstream fout;
    fout.open("db.txt", ios::app);
    loadDB(database_map);
-   cout<<"Database loaded successfully"<<endl;
+   cout<<"Database loaded successfully!"<<endl;
    bool quit = false;
    while(!quit){
        cout<<"\n\n";
