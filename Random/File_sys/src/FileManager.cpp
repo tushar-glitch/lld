@@ -7,3 +7,6 @@ void FileManager::createfile(const std::string &file_name, const std::string &co
     fout.close();
 }
 
+void FileManager::readfile(const std::string& file_name){
+    
+}
