@@ -8,5 +8,6 @@ void FileManager::createfile(const std::string &file_name, const std::string &co
 }
 
 void FileManager::readfile(const std::string& file_name){
+    std::ofstream fout(file_name);
     
 }
